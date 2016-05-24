@@ -5,6 +5,6 @@ export class HelloService {
   name: string = 'Mario Romano';
 
   getName(): string {
-    return
+    return this.name;
   }
 }
