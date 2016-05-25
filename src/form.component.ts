@@ -1,40 +1,41 @@
 import { Component } from '@angular/core';
+import { ControlGroup, FormBuilder, Validators, Control } from '@angular/common';
 
 @Component({
     selector: 'form-component',
     template: `
-     <form (ngSubmit)="onSubmit()" #angularForm="ngForm">
+     <form (ngSubmit)="onSubmit()" [ngFormModel]="angularForm">
       <div class="form-group">
         <label for="">Name</label>
-        <input type="text" class="form-control" required  #name="ngForm"
-          [(ngModel)]="model.name" ngControl="name" pattern="[A-Za-z]{5}">
-        <div [hidden]="name.valid || name.pristine" >
-          Name is required
-        </div>
+        <input type="text" id="name" ngControl="name"  #name="ngForm" required/>
+        <div [hidden]="name.valid">Required</div>
       </div>
       <div class="form-group">
-        <label for="surname">Surname</label>
-        <input type="text" class="form-control" required minlength="3"
-          [(ngModel)]="model.surname" ngControl="surname"  #surname="ngForm" >
-        <div [hidden]="surname.valid || surname.pristine" >
-          Name is required
-        </div>
-        
-        <button type="submit" class="btn btn-default" [disabled]="!angularForm.form.valid">Submit</button>
+        <label for="">Surname</label>
+        <input type="text" id="surname" ngControl="surname"  #surname="ngForm" required/>
+        <div [hidden]="surname.valid">Wrong Surname</div>
       </div>
+        <button type="submit" class="btn btn-default" [disabled]="!angularForm.valid" >Submit</button>
     </form>`
 })
 export class FormComponent {
 
-    model: Model = new Model('Mario', 'Romano');
+    angularForm: ControlGroup;
 
-    onSubmit() {
-        console.log(this.model);
+    constructor(fb: FormBuilder) {
+        this.angularForm = fb.group({
+            'name': ['Mario', Validators.required],
+            'surname': ['Romano', this.rightSurname]
+        });
     }
-}
 
-export class Model {
-    constructor(public name: string,
-                public surname: string) {
+    rightSurname(c: Control) {
+        if (c.value !== 'Romano') {
+            return {wrongsurname: false};
+        }
+    }
+
+    onSubmit(): void {
+        console.log(this.angularForm.value);
     }
 }
