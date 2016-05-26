@@ -6,3 +6,5 @@ bower_components/
 .idea
 dist/
 !systemjs.config.js
+!karma-test-shim.js
+!karma.conf.js
