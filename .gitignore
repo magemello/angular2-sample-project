@@ -5,3 +5,4 @@ bower_components/
 **/*.js.map
 .idea
 dist/
+!systemjs.config.js
