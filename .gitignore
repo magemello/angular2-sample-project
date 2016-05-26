@@ -5,3 +5,6 @@ bower_components/
 **/*.js.map
 .idea
 dist/
+!systemjs.config.js
+!karma-test-shim.js
+!karma.conf.js
