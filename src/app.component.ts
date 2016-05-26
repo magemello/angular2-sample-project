@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { HelloWorld } from './hello-world.component';
-import { FormComponent } from './form.component';
+import { StreamComponent } from './stream.component';
 
 @Component({
   selector: 'my-app',
-  template: `<form-component></form-component>`,
-  directives: [HelloWorld, FormComponent]
+  template: `<stream-conponent></stream-conponent>`,
+  directives: [HelloWorld, StreamComponent]
 })
 export class AppComponent {
 }
