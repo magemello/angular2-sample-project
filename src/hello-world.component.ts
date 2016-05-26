@@ -9,7 +9,7 @@ export class HelloWorld {
     name: string;
 
     @Output()
-    event: EventEmitter = new EventEmitter();
+    event: EventEmitter<string> = new EventEmitter<string>();
 
     emitEvent():void {
         this.event.emit("you clicked the HelloWorldComponent");

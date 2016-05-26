@@ -17,7 +17,7 @@ export class AppComponent {
 
     nameComponent: string = ''
 
-    updateFromComponent(nameComponent): void {
+    updateFromComponent(nameComponent:string): void {
         this.nameComponent = nameComponent;
     }
 }
